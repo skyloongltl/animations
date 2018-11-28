@@ -20,7 +20,7 @@ class CreateMongodbCollections extends Migration
      */
     public function up()
     {
-        $this->db->createCollection('bilibili_animations');
+        /*$this->db->createCollection('bilibili_animations');
         $this->db->createCollection('bilibili_animation_information');
 
         $this->db->createCollection('aqiyi_animations');
@@ -30,7 +30,7 @@ class CreateMongodbCollections extends Migration
         $this->db->createCollection('tengxun_animation_information');
 
         $this->db->createCollection('youku_animations');
-        $this->db->createCollection('youku_animation_information');
+        $this->db->createCollection('youku_animation_information');*/
     }
 
     /**
@@ -40,7 +40,7 @@ class CreateMongodbCollections extends Migration
      */
     public function down()
     {
-        $this->db->dropCollection('bilibili_animations');
+        /*$this->db->dropCollection('bilibili_animations');
         $this->db->dropCollection('bilibili_animation_information');
 
         $this->db->dropCollection('aqiyi_animations');
@@ -50,7 +50,7 @@ class CreateMongodbCollections extends Migration
         $this->db->dropCollection('tengxun_animation_information');
 
         $this->db->dropCollection('youku_animations');
-        $this->db->dropCollection('youku_animation_information');
+        $this->db->dropCollection('youku_animation_information');*/
     }
 
     public function isExistsCollection($name)

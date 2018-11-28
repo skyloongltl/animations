@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Event\UpdateAllAnimations;
 use App\Library\Mongodb;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
-use MongoDB\BSON\ObjectId;
 
 class GetBilibiliUpdates extends Command
 {
@@ -86,8 +86,9 @@ class GetBilibiliUpdates extends Command
             'youku' => []
         ];
         $detail_url = '/view/web_api/season?media_id=';
+        $i = 0;
         foreach ($update_data['result'][$today_index]['seasons'] as $value) {
-            if (strtotime($value['pub_time']) <= time() && strtotime($value['pub_time']) >= strtotime("-1 hours")) {
+            if (strtotime($value['pub_time']) <= time() && strtotime($value['pub_time']) <= get_last_hours()) {
                 $res = $this->animations_collection->findOne([
                     'season_id' => $value['season_id']
                 ], [
@@ -112,10 +113,13 @@ class GetBilibiliUpdates extends Command
                 $this->animations_information_collection->replaceOne([
                     'media_id' => $res->media_id,
                 ], json_decode($response->getBody()->getContents(), true)['result']);
-                $update_list['bilibili'][] = $res->media_id;
-                Cache::forever('update_list', json_encode($update_list));
+                $update_list['bilibili'][$i]['media_id'] = $res->media_id;
+                preg_match('|\d+|', $value['pub_index'], $match);
+                $update_list['bilibili'][$i]['episode'] = $match[0];
+                $i++;
             }
         }
+        Cache::forever('update_list', json_encode($update_list));
     }
 
     public function init()

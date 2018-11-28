@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Animation extends Model
 {
-    protected $table = 'animation';
+    protected $table = 'animation_information';
+    protected $fillable = [
+        'animations_id',
+        'url',
+        'index',
+        'web_type_id'
+    ];
 }

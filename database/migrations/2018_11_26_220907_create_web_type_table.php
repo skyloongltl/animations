@@ -15,7 +15,7 @@ class CreateWebTypeTable extends Migration
     {
         Schema::create('web_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('name');
             $table->string('icon');
             $table->timestamps();
         });

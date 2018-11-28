@@ -15,11 +15,10 @@ class CreateAnimationInformationTable extends Migration
     {
         Schema::create('animation_information', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('animations_id');
+            $table->integer('animations_id');
             $table->string('url');
             $table->string('index');
-            $table->increments('web_type_id');
-            $table->unique('animations_id');
+            $table->integer('web_type_id');
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class CreateAlreadyOwnedTable extends Migration
     {
         Schema::create('already_owned', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('web_type_id');
+            $table->integer('web_type_id');
             $table->string('a_id')->comment('每个网站给番剧生成的id，不是animations的id');
-            $table->increments('animations_id');
+            $table->integer('animations_id')->default(0);
             $table->timestamps();
         });
     }

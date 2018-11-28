@@ -75,6 +75,7 @@ class GetBilibiliAnimations extends Command
             $page--;
             usleep(200000);
         }
+        event(new \App\Event\GetAllAnimations('bilibili'));
     }
 
     public function init()

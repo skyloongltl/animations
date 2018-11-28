@@ -6,6 +6,7 @@ return [
     'bilibili' => [
         'base_url'          => 'https://bangumi.bilibili.com',
         'update_url'        => '/web_api/timeline_global',
+        'play_url'          => 'https://www.bilibili.com/bangumi/play/ep'
     ],
     'tengxun_url'           => '',
     'tengxun_update_url'    => '',
