@@ -74,6 +74,7 @@ class GetBilibiliUpdates extends Command
         if (!empty($update_data['result'][$today_index]['seasons'])) {
             $this->update($update_data, $today_index, $headers, $client);
         }
+        $client = null;
     }
 
     public function update($update_data, $today_index, $headers, $client)
@@ -85,10 +86,10 @@ class GetBilibiliUpdates extends Command
             'tengxun' => [],
             'youku' => []
         ];
-        $detail_url = '/view/web_api/season?media_id=';
+        $detail_url = config('animations.bilibili')['update_detail_url'];
         $i = 0;
         foreach ($update_data['result'][$today_index]['seasons'] as $value) {
-            if (strtotime($value['pub_time']) <= time() && strtotime($value['pub_time']) <= get_last_hours()) {
+            if (strtotime($value['pub_time']) < get_now_hours() && strtotime($value['pub_time']) >= get_last_hours()) {
                 $res = $this->animations_collection->findOne([
                     'season_id' => $value['season_id']
                 ], [

@@ -17,9 +17,9 @@ class CreateAnimationsInformationTable extends Migration
             $table->increments('id');
             $table->string('image');
             $table->string('name');
-            $table->string('index_show')->comment('类似：全10话');
-            $table->string('play')->comment('播放量');
-            $table->string('is_finish');
+            $table->string('index_show')->default('')->comment('类似：全10话');
+            $table->string('play')->default('')->comment('播放量');
+            $table->tinyInteger('is_finish')->default('0');
             $table->integer('episodes')->comment('共有几集');
             $table->integer('md5_name');
             $table->index('md5_name');

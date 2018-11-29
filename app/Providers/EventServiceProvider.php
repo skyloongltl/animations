@@ -18,12 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        'App\Event\GetAllAnimations' => [
-            'App\Listeners\GetAnimations',
+        \App\Event\GetAllAnimations::class => [
+            \App\Listeners\GetAnimations::class,
         ],
-        'App\Event\UpdateAllAnimations' => [
-            'App\Listeners\UpdateAnimations',
-        ],
+        \App\Event\UpdateAllAnimations::class => [
+            \App\Listeners\UpdateAnimations::class,
+        ]
     ];
 
     /**

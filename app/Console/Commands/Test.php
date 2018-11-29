@@ -39,6 +39,7 @@ class Test extends Command
      */
     public function handle()
     {
-
+        //event(new \App\Event\GetAllAnimations('bilibili'));
+        event(new \App\Event\GetAllAnimations('aqiyi'));
     }
 }

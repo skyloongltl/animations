@@ -75,7 +75,6 @@ class GetBilibiliAnimations extends Command
             $page--;
             usleep(200000);
         }
-        event(new \App\Event\GetAllAnimations('bilibili'));
     }
 
     public function init()
@@ -95,7 +94,7 @@ class GetBilibiliAnimations extends Command
 
     public function get_animation_information($result, $headers, ClientInterface $client)
     {
-        $detail_url = '/view/web_api/season?media_id=';
+        $detail_url = config('animations.bilibili')['update_detail_url'];
         $information = [];
         foreach ($result['result']['data'] as $res) {
             $response = $client->request('GET', $detail_url . $res['media_id'], $headers);
